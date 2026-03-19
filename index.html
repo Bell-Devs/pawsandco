@@ -218,10 +218,23 @@
 </style>
 </head>
 <body>
-
+<script>
+!function(){const e=document.createElement("style");e.textContent=".loader-wrapper{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#FFF8E1;display:flex;justify-content:center;align-items:center;z-index:10000;opacity:1;transition:opacity .4s ease-out,visibility 0s .4s}.loader-wrapper.fade-out{opacity:0;visibility:hidden}.loader-paws-container{display:flex;gap:20px;align-items:center}.paw-icon{width:50px;height:50px;animation:p .8s infinite ease-in-out;fill:#FF8F00}@keyframes p{0%,100%{transform:translateY(0) scale(1);opacity:1}50%{transform:translateY(-20px) scale(1.1);opacity:.7}}.paw-icon:nth-child(1){animation-delay:0s}.paw-icon:nth-child(2){animation-delay:.2s}.paw-icon:nth-child(3){animation-delay:.35s}",document.head.appendChild(e);const t=document.createElement("div");t.className="loader-wrapper";const n=document.createElement("div");n.className="loader-paws-container",t.appendChild(n),document.body.appendChild(t),document.body.style.overflow="hidden";
+/* New Paw SVG String */
+const s='<svg viewBox="0 0 2200 2200" xmlns="http://www.w3.org/2000/svg"><g><path d="M402.568,1518.895c-146.07,45.501 -311,-58.155 -368.339,-231.492c-74.466,-225.027 -24.529,-468.818 121.571,-514.29c146.07,-45.501 338.364,140.902 407.414,349.563c57.339,173.337 -14.546,350.718 -160.646,396.219Z"/><path d="M1728.293,2053.011c-214.016,35.062 -313.438,-42.064 -450.69,-19.616c-137.279,22.475 -205.084,126.968 -419.1,161.977c-280.173,45.832 -546.734,-257.543 -331.471,-522.206c267.526,-328.876 296.732,-692.247 560.035,-735.327c263.33,-43.08 413.797,290.857 777.739,516.406c292.848,181.509 143.632,552.933 -136.514,598.765Z"/><path d="M1077.141,474.634c-18.433,-218.397 85.811,-461.966 238.688,-474.125c152.932,-12.13 295.146,194.604 315.025,430.14c15.314,181.451 -96.218,338.392 -249.123,350.525c-152.902,12.16 -289.275,-125.086 -304.589,-306.539Z"/><path d="M401.86,631.768c-60.857,-228.822 3.573,-469.393 152.139,-506.558c148.538,-37.192 329.375,159.721 385.807,371.899c46.901,176.282 -35.504,349.317 -184.043,386.509c-148.566,37.193 -307,-75.569 -353.904,-251.851Z"/><path d="M1930.198,1268.888c-153.387,3.522 -281.308,-141.18 -285.76,-323.181c-5.331,-219.057 113.318,-456.354 266.674,-459.849c153.387,-3.52 283.013,210.861 288.771,447.112c4.408,182.001 -116.326,332.395 -269.685,335.918Z"/></g></svg>';
+for(let e=0;e<3;e++){const o=document.createElement("div");o.className="paw-icon",o.innerHTML=s;
+/* Random Rotation Logic */
+n.appendChild(o)}setTimeout(()=>{t.classList.add("fade-out"),document.body.style.overflow="",t.addEventListener("transitionend",(function e(n){"opacity"===n.propertyName&&(t.remove(),t.removeEventListener("transitionend",e))}))},850)}();
+</script>
 <header>
     <div class="logo-wrap">
-        <svg width="34" height="34" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#fff3e7" stroke="#ffb88c" stroke-width="2"/><circle cx="22" cy="22" r="6" fill="#ff8a3d"/><circle cx="42" cy="22" r="6" fill="#ff8a3d"/><circle cx="26" cy="36" r="6" fill="#ff8a3d"/><circle cx="38" cy="36" r="6" fill="#ff8a3d"/><ellipse cx="32" cy="44" rx="9" ry="7" fill="#ff8a3d"/></svg>
+        <svg width="34" height="34" viewBox="0 0 2200 2200" fill="#ff8a3d" xmlns="http://www.w3.org/2000/svg">
+            <path d="M402.568,1518.895c-146.07,45.501 -311,-58.155 -368.339,-231.492c-74.466,-225.027 -24.529,-468.818 121.571,-514.29c146.07,-45.501 338.364,140.902 407.414,349.563c57.339,173.337 -14.546,350.718 -160.646,396.219Z"/>
+            <path d="M1728.293,2053.011c-214.016,35.062 -313.438,-42.064 -450.69,-19.616c-137.279,22.475 -205.084,126.968 -419.1,161.977c-280.173,45.832 -546.734,-257.543 -331.471,-522.206c267.526,-328.876 296.732,-692.247 560.035,-735.327c263.33,-43.08 413.797,290.857 777.739,516.406c292.848,181.509 143.632,552.933 -136.514,598.765Z"/>
+            <path d="M1077.141,474.634c-18.433,-218.397 85.811,-461.966 238.688,-474.125c152.932,-12.13 295.146,194.604 315.025,430.14c15.314,181.451 -96.218,338.392 -249.123,350.525c-152.902,12.16 -289.275,-125.086 -304.589,-306.539Z"/>
+            <path d="M401.86,631.768c-60.857,-228.822 3.573,-469.393 152.139,-506.558c148.538,-37.192 329.375,159.721 385.807,371.899c46.901,176.282 -35.504,349.317 -184.043,386.509c-148.566,37.193 -307,-75.569 -353.904,-251.851Z"/>
+            <path d="M1930.198,1268.888c-153.387,3.522 -281.308,-141.18 -285.76,-323.181c-5.331,-219.057 113.318,-456.354 266.674,-459.849c153.387,-3.52 283.013,210.861 288.771,447.112c4.408,182.001 -116.326,332.395 -269.685,335.918Z"/>
+        </svg>
         <div class="brand">Paws & Co</div>
     </div>
 </header>
