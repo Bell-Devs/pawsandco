@@ -413,8 +413,9 @@ document.getElementById('addressInput').addEventListener('input', function(e) {
                     d.onclick = () => {
                         const a = p.address;
                         document.getElementById('addressInput').value = `${a.house_number || ''} ${a.road || ''}`.trim() || p.display_name.split(',')[0];
-                        document.querySelector('input[name="city"]').value = a.city || a.town || "";
-                        document.querySelector('input[name="state"]').value = (a.state || "").substring(0,2).toUpperCase();
+                        document.querySelector('input[name="city"]').value = a.city || a.town || a.village || "";
+                        const iso = a['ISO3166-2-lvl4'] || ""; 
+                        document.querySelector('input[name="state"]').value = iso.split('-').pop().toUpperCase();
                         document.querySelector('input[name="zip"]').value = a.postcode || "";
                         results.style.display = 'none';
                     };
